@@ -64,7 +64,7 @@ import streamlit as st
 #     unsafe_allow_html=True
 # )
 
-st.title("Text to Speech Converter !")
+st.title("Text 📝 to Speech 🗣️ Converter !")
 
 # Sidebar for managing audio files (default Streamlit theme)
 st.sidebar.title("Audio History")
