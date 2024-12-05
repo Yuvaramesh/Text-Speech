@@ -1,5 +1,4 @@
 import streamlit as st
-import pyttsx3
 import os
 from gtts import gTTS
 from datetime import datetime
@@ -52,19 +51,6 @@ st.markdown(
 )
 
 # Title and instructions
-import streamlit as st
-
-# Display the title with HTML using markdown
-import streamlit as st
-
-# Display the title with the icons inline
-# st.markdown(
-#     """
-#     <h1>Text <img src="./images/document-svgrepo-com.svg" style="width:30px;vertical-align:middle;"> to Speech <img src="./images/headphones-music-svgrepo-com.svg" style="width:30px;vertical-align:middle;"> Converter</h1>
-#     """,
-#     unsafe_allow_html=True
-# )
-
 st.title("Text 📝 to Speech 🗣️ Converter !")
 
 # Sidebar for managing audio files (default Streamlit theme)
@@ -97,13 +83,6 @@ else:
 # Main page: Text input
 text_to_convert = st.text_area("Enter Text Here", height=200)
 
-# Initialize pyttsx3 engine
-engine = pyttsx3.init()
-
-# Adjust settings (optional)
-engine.setProperty("rate", 150)  # Speed of speech
-engine.setProperty("volume", 1)  # Volume (0.0 to 1.0)
-
 # Single button to handle Convert, Play, and Save
 if st.button("Convert, Play, and Save"):
     if text_to_convert.strip():
@@ -111,9 +90,9 @@ if st.button("Convert, Play, and Save"):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         file_path = Path(AUDIO_DIR) / f"speech_{timestamp}.mp3"
         
-        # Save the speech to a file
-        engine.save_to_file(text_to_convert, str(file_path))
-        engine.runAndWait()  # Only runs for saving to file, no live playback
+        # Convert text to speech using gTTS (Google Text to Speech)
+        tts = gTTS(text=text_to_convert, lang='en')
+        tts.save(str(file_path))  # Save the speech to a file
 
         # Notify the user
         st.success(f"Audio converted and saved as {file_path.name}!")
