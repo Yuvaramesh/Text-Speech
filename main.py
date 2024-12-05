@@ -1,6 +1,7 @@
 import streamlit as st
 import pyttsx3
 import os
+from gtts import gTTS
 from datetime import datetime
 from pathlib import Path
 
