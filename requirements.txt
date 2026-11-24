@@ -1,3 +1,4 @@
 streamlit
 pyttsx3
 gTTS
+protobuf>=6.33.5 # not directly required, pinned by Snyk to avoid a vulnerability
